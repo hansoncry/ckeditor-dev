@@ -311,8 +311,10 @@
 				var data = evt.data;
 
 				if ( data.dataValue ) {
+					window.console.log('before the fix the data is ', data);
+					data.dataValue = CKEDITOR.tools.htmlDecode( data.dataValue );
 					editor.insertHtml( data.dataValue, data.type, data.range );
-
+					window.console.log('After the fix the data is ', data);
 					// Defer 'afterPaste' so all other listeners for 'paste' will be fired first.
 					// Fire afterPaste only if paste inserted some HTML.
 					setTimeout( function() {
